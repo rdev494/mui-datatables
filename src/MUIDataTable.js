@@ -549,6 +549,25 @@ class MUIDataTable extends React.Component {
   }
 
   setTableAction = action => {
+    //search result announcement
+    if (action == 'search') {
+      let announceText;
+      if (this.state.searchText !== null) {
+        if (this.state.displayData.length > 0) {
+          announceText = `${this.state.displayData.length} result${
+            this.state.displayData.length > 1 ? 's' : ''
+          } found, press tab to navigate`;
+        } else {
+          announceText = 'No results found.';
+        }
+      } else {
+        announceText = null;
+      }
+      this.setState({
+        announceText: announceText,
+      });
+    }
+
     if (typeof this.options.onTableChange === 'function') {
       this.options.onTableChange(action, this.state);
     }
@@ -1933,7 +1952,8 @@ class MUIDataTable extends React.Component {
 
     return (
       <Paper elevation={this.options.elevation} ref={this.tableContent} className={paperClasses}>
-        {(this.options.selectToolbarPlacement === STP.ALWAYS || selectedRows.data.length > 0 && this.options.selectToolbarPlacement !== STP.NONE) && (
+        {(this.options.selectToolbarPlacement === STP.ALWAYS ||
+          (selectedRows.data.length > 0 && this.options.selectToolbarPlacement !== STP.NONE)) && (
           <TableToolbarSelectComponent
             options={this.options}
             selectedRows={selectedRows}
