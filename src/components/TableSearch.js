@@ -65,7 +65,7 @@ const TableSearch = ({ options, searchText, onSearch, onHide }) => {
         <IconButton
           className={classes.clearIcon}
           style={{ visibility: clearIconVisibility }}
-          aria-label="Clear search string"
+          aria-label="Clear search"
           onClick={onHide}>
           <ClearIcon />
         </IconButton>
