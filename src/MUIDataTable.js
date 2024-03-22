@@ -108,7 +108,7 @@ const STP = {
   REPLACE: 'replace',
   ABOVE: 'above',
   NONE: 'none',
-  ALWAYS: 'always'
+  ALWAYS: 'always',
 };
 
 class MUIDataTable extends React.Component {
@@ -565,6 +565,15 @@ class MUIDataTable extends React.Component {
       }
       this.setState({
         announceText: announceText,
+      });
+    } else if (action === 'changePage' || action === 'changeRowsPerPage') {
+      let count = this.state.displayData.length;
+      let from = this.state.page * this.state.rowsPerPage + 1;
+      let to = from + this.state.rowsPerPage - 1;
+      if (to > count) to = count;
+
+      this.setState({
+        announceText: `Showing ${from}-${to} of ${count} results`,
       });
     }
 

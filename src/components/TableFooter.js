@@ -18,7 +18,7 @@ const TableFooter = ({ options, rowCount, page, rowsPerPage, changeRowsPerPage, 
 
   if (customFooter) {
     return (
-      <MuiTable className={classes.root}>
+      <MuiTable className={classes.root} role="presentation">
         {options.customFooter(
           rowCount,
           page,
@@ -33,7 +33,7 @@ const TableFooter = ({ options, rowCount, page, rowsPerPage, changeRowsPerPage, 
 
   if (pagination) {
     return (
-      <MuiTable className={classes.root}>
+      <MuiTable className={classes.root} role="presentation">
         <TablePagination
           count={rowCount}
           page={page}
